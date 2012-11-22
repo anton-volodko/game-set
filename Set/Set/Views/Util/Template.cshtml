@@ -1,0 +1,9 @@
+@{
+    Layout = null;
+}
+var tmpl = tmpl || { };
+tmpl.@ViewBag.Name = (function ($)
+{
+    var template = $.template("@{ Html.RenderAction((string) ViewBag.Action, (string) ViewBag.Controller); }");
+    return template;
+}($));

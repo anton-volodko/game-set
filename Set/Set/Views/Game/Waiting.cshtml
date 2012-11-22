@@ -1,0 +1,17 @@
+﻿@model string[]
+
+@{
+    ViewBag.Title = "Wait players";
+}
+
+<h2>Wait players to start game</h2>
+
+<h3>Joined players:</h3>
+<ul>
+    @foreach(var userName in Model)
+    {
+        <li>@userName</li>
+    }
+</ul>
+
+<button class="start-game" data-page="@Url.Action("Play")">Start</button>

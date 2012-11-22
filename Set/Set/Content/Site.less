@@ -1,0 +1,118 @@
+﻿
+@board-width: 1000px;
+@board-height: 550px;
+@board-details-width: 200px;
+@players-height: 75px;
+@board-margin: 5px;
+@border-size: 1px;
+
+div#board {
+    width: @board-width;
+    height: @board-height;
+}
+
+div#board div {
+    border-style: solid;
+    border-color: black;
+    border-width: @border-size;
+    margin: @board-margin;
+}
+
+div#board>div {
+    border-radius: (@board-margin * 2);
+}
+
+@middle-panel-height: (@board-height - (@board-margin + @border-size ) * 4 -  @players-height * 2);
+div#game-details {
+    float: left;
+    width: @board-details-width;
+    height: @middle-panel-height;
+    clear: left;
+}
+
+@cards-margin: 3px;
+@cards-panel-width: (@board-width - @board-details-width - (@board-margin + @border-size) * 4); 
+div#cards-panel {
+    float: left;
+    width: @cards-panel-width;
+    height: @middle-panel-height;
+    clear: right;
+}
+
+
+.card-mixin (@cards-count-hor, @cards-count-vert) {
+    @space: (@cards-margin + @border-size) * 2;
+    @cards-space-hor: (@cards-count-hor * @space);
+    @cards-space-vert: (@cards-count-vert * @space);
+    @card-height: ((@middle-panel-height - @cards-space-vert) / @cards-count-vert);
+    @cards-width: ((@cards-panel-width - @cards-space-hor) / @cards-count-hor);
+    width: @cards-width;
+    height: @card-height;
+}
+
+div#cards-panel .card{
+    margin: @cards-margin;
+    border-radius: 5px;
+    float: left;
+    box-shadow: @cards-margin @cards-margin @cards-margin/2 #888;
+    .card-mixin(3, 3);
+}
+
+div#cards-panel .card.selected{
+	background-color: gray; 
+}
+
+div#cards-panel.twelve-cards .card{
+    .card-mixin(4, 3);
+}
+
+div#cards-panel.fifteen-cards .card{
+    .card-mixin(5, 3);
+}
+
+div#cards-panel.eighteen-cards .card{
+    .card-mixin(6, 3);
+}
+
+div#cards-panel.twenty-one-cards .card{
+    .card-mixin(7, 3);
+}
+
+div#players-info, div#toolbox {
+    clear: both;
+    width: (@board-width - (@board-margin + @border-size) * 2);
+}
+
+div#players-info{
+    height: @players-height;
+}
+
+@player-info-size: (@players-height - (@board-margin + @border-size)* 2);
+
+div.player-info {
+    width: @player-info-size;
+    height: @player-info-size;
+    border-radius: @board-margin;
+    float: left;
+    vertical-align: central;
+    text-align: center;    
+}
+
+div.having-fall {
+    border-color: red;
+    border-width: 2px;
+}
+
+button#add-cards {
+    float: left;
+    margin-left: 10px;
+}
+
+button#raise-hand {
+    float: right;
+    margin-right: 10px;
+}
+
+div#toolbox button {
+    margin-top: 5px;
+}

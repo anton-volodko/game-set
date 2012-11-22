@@ -1,0 +1,19 @@
+﻿@model AV.Set.Model.Game
+
+@{
+    ViewBag.Title = "Play";
+}
+
+<div id="board" data-action-check="@Url.Action("CheckSet", "game")">
+    <div id="players-info" data-source="@Url.Action("players", "api")">    
+    </div>
+    <div id="game-details" data-source="@Url.Action("GetGameDetails", "game")">
+    
+    </div>
+    <div id="cards-panel" data-source="@Url.Action("GetPlayingCards", "Game")"></div>
+    <div id="toolbox"><button id="add-cards" data-action="@Url.Action("AddCards", "Game")">Add 3 cards</button><button id="raise-hand" data-action="@Url.Action("RaiseHand", "Game")">Set</button><div class="clearfix" style="visibility: hidden"></div></div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/game-board")
+}
